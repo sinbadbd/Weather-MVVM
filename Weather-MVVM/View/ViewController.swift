@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: RootVC {
 
-    
+    let tableView = UITableView()
     
     
     override func viewDidLoad() {
@@ -25,33 +25,76 @@ class ViewController: RootVC {
     }
     
     func setupVC(){
+        removeScrollview()
         topViewHeight?.constant = navigationController!.navigationBar.frame.size.height
         resetBase()
         self.view.backgroundColor =  hexToUIColor(hex: "#E6EEF4")
     }
     
     func setupWeatherUI(){
-        let view  = UIView()
+        let topView  = UIView()
         
-        contentView.addSubview(view)
+        contentView.addSubview(topView)
         
-        view.position(top: contentView.topAnchor, left: contentView.leadingAnchor,bottom: contentView.bottomAnchor,right: contentView.trailingAnchor, insets: .init(top: 20, left: 10, bottom: 0, right: 10))
-        view.size(height:200)
-        view.layer.cornerRadius = 8
-        view.backgroundColor = .blue
+        topView.position(top: contentView.topAnchor, left: contentView.leadingAnchor,right: contentView.trailingAnchor, insets: .init(top: 20, left: 20, bottom: 0, right: 20))
+        topView.size(height:60)
+        topView.layer.cornerRadius = 8
+        topView.backgroundColor = .blue
         
         
-        let nextButton = MyButton(frame: .zero, setTitle: "Next", bgColor: buttonColor, textColor: .white)
-        view.addSubview(nextButton)
-        nextButton.position(top: view.topAnchor, left: view.leadingAnchor, insets: .init(top: 50, left: 40, bottom: 0, right: 20))
-        nextButton.size(width:200,height: 60)
-        nextButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        let settingsbtn = MyButton(frame: .zero, setTitle: "Settings", bgColor: buttonColor, textColor: .white)
+        topView.addSubview(settingsbtn)
+        settingsbtn.position(top: topView.topAnchor, left: topView.leadingAnchor, insets: .init(top: 10, left: 20, bottom: 0, right: 20))
+        settingsbtn.size(width:80,height: 40)
+        settingsbtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        settingsbtn.tag = 1
+        settingsbtn.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         
+        
+        let addButton = MyButton(frame: .zero, setTitle: "Add", bgColor: buttonColor, textColor: .white)
+        topView.addSubview(addButton)
+        addButton.position(top: topView.topAnchor, right: topView.trailingAnchor, insets: .init(top: 10, left: 0, bottom: 0, right: 20))
+        addButton.size(width:80,height: 40)
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        addButton.tag = 2
+        addButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        
+        
+        contentView.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(WeatherListCell.self, forCellReuseIdentifier: "cell")
+        tableView.position(top: topView.bottomAnchor, left: contentView.leadingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, insets: .init(top: 20, left: 20, bottom: 0, right: 20))
+   
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.tableView.reloadData()
+        }
+//         tableView.size( height: 500)
     }
 
-    @objc func tapButton(){
-        let vc = DashboardVC()
-        navController.pushViewController(vc, animated: true)
+    @objc func tapButton(sender:UIButton){
+        if sender.tag == 1 {
+           print("hi")
+        }else if sender.tag == 2 {
+            let vc = AddWeatherCityVC()
+            navController.pushViewController(vc, animated: true)
+        }
+        
     }
 }
 
+extension ViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WeatherListCell
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+}

@@ -17,7 +17,7 @@ class MyUITextField :UITextField {
     var rightTextFieldPadding:CGFloat = 45
     var padding:UIEdgeInsets!
     
-    convenience init(frame: CGRect = .zero,placeholderText:String? = "placeholderText",_ icon: UIImage?) {
+    convenience init(frame: CGRect = .zero,placeholderText:String? = "placeholderText",_ icon: UIImage?=nil) {
         self.init(frame: frame)
         
         if frame == .zero {
