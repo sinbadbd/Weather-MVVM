@@ -7,18 +7,29 @@
 
 import UIKit
 
-class ViewController: RootVC {
+class ViewController: RootVC , AddWeatherDelegate{
+
+    
 
     let tableView = UITableView()
     
+//    private var weatherListViewModel = WeatherListViewModel()
+    let vc =  AddWeatherCityVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
-        
+        vc.delegate = self
         setupWeatherUI()
+//        vc.dic?.name
+        print( "data:\(vc.dic?.name ?? "")")
     }
-
+    
+    func addWeatherDidSave(vm: WeatherViewModel) {
+        vc.delegate = self
+        print("test data")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "Weather" //stringFor(key: "play_shop")
@@ -27,11 +38,13 @@ class ViewController: RootVC {
     func setupVC(){
         removeScrollview()
         topViewHeight?.constant = navigationController!.navigationBar.frame.size.height
+//        navController.navigationBar.prefersLargeTitles = true
         resetBase()
         self.view.backgroundColor =  hexToUIColor(hex: "#E6EEF4")
     }
     
     func setupWeatherUI(){
+        
         let topView  = UIView()
         
         contentView.addSubview(topView)
@@ -63,13 +76,23 @@ class ViewController: RootVC {
         contentView.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.estimatedRowHeight = 50.0
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.register(WeatherListCell.self, forCellReuseIdentifier: "cell")
-        tableView.position(top: topView.bottomAnchor, left: contentView.leadingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, insets: .init(top: 20, left: 20, bottom: 0, right: 20))
+        tableView.position(top: topView.bottomAnchor, left: contentView.leadingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, insets: .init(top: 20, left: 20, bottom: 10, right: 20))
    
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
         }
 //         tableView.size( height: 500)
+        
+        updadeUI()
+    }
+    func updadeUI(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            print("==...==")
+        }
+          
     }
 
     @objc func tapButton(sender:UIButton){
@@ -77,7 +100,8 @@ class ViewController: RootVC {
            print("hi")
         }else if sender.tag == 2 {
             let vc = AddWeatherCityVC()
-            navController.pushViewController(vc, animated: true)
+            present(vc, animated: true, completion: nil)
+//            navController.pushViewController(vc, animated: true)
         }
         
     }
@@ -85,7 +109,7 @@ class ViewController: RootVC {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,3 +122,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
 }
+
+//extension ViewController: AddWeatherDelegate {
+//    func addWeatherDidSave(vm: WeatherViewModel) {
+//        let vc = AddWeatherCityVC()
+//        vc.delegate = self
+//        print("get data")
+//    }
+//}

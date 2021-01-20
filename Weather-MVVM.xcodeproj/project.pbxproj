@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D37877C25B854B200F9DA64 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37877B25B854B200F9DA64 /* WebService.swift */; };
+		1D37878125B8595000F9DA64 /* WeatherListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37878025B8595000F9DA64 /* WeatherListViewModel.swift */; };
+		1D37878E25B86CD200F9DA64 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D37878D25B86CD200F9DA64 /* SettingsVC.swift */; };
 		1DE4C21525B8304B00E0B07C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4C21325B8304B00E0B07C /* Main.storyboard */; };
 		1DE4C21725B8304D00E0B07C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4C21625B8304D00E0B07C /* Assets.xcassets */; };
 		1DE4C21A25B8304D00E0B07C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4C21825B8304D00E0B07C /* LaunchScreen.storyboard */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D37877B25B854B200F9DA64 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		1D37878025B8595000F9DA64 /* WeatherListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModel.swift; sourceTree = "<group>"; };
+		1D37878D25B86CD200F9DA64 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		1DE4C20A25B8304B00E0B07C /* Weather-MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE4C21425B8304B00E0B07C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DE4C21625B8304D00E0B07C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +59,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D37877A25B854A000F9DA64 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1D37877B25B854B200F9DA64 /* WebService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1D37877F25B8592E00F9DA64 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1D37878025B8595000F9DA64 /* WeatherListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		1DE4C20125B8304B00E0B07C = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +94,8 @@
 		1DE4C20C25B8304B00E0B07C /* Weather-MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				1D37877F25B8592E00F9DA64 /* ViewModels */,
+				1D37877A25B854A000F9DA64 /* Services */,
 				1DE4C22925B8308400E0B07C /* Helper */,
 				1DE4C23325B8308500E0B07C /* View */,
 				1DE4C22325B8307600E0B07C /* App */,
@@ -119,6 +143,7 @@
 				1DE4C24825B83BE600E0B07C /* Cell */,
 				1DE4C23425B8308500E0B07C /* ViewController.swift */,
 				1DE4C23525B8308500E0B07C /* AddWeatherCityVC.swift */,
+				1D37878D25B86CD200F9DA64 /* SettingsVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D37877C25B854B200F9DA64 /* WebService.swift in Sources */,
 				1DE4C23C25B8308500E0B07C /* ViewController.swift in Sources */,
 				1DE4C23925B8308500E0B07C /* MyUITextField.swift in Sources */,
 				1DE4C22625B8307600E0B07C /* AppDelegate.swift in Sources */,
@@ -211,7 +237,9 @@
 				1DE4C23825B8308500E0B07C /* MyUILable.swift in Sources */,
 				1DE4C23725B8308500E0B07C /* RootVC.swift in Sources */,
 				1DE4C23625B8308500E0B07C /* UIView+Extension.swift in Sources */,
+				1D37878125B8595000F9DA64 /* WeatherListViewModel.swift in Sources */,
 				1DE4C22725B8307600E0B07C /* SceneDelegate.swift in Sources */,
+				1D37878E25B86CD200F9DA64 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

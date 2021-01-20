@@ -7,7 +7,8 @@
 
 import UIKit
 let buttonColor   = UIColor(red: 19/255, green: 124/255, blue: 205/255, alpha: 1)
-
+let buttonColorDim   = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
+//rgb(105,105,105)
 func getButtonWithImage(frame:CGRect, imgName:String, imgSz:CGSize, imgClr:UIColor?) ->UIButton {
      let aBtn = UIButton(type: .custom)
      aBtn.frame = frame
@@ -48,4 +49,12 @@ func hexToUIColor (hex:String) -> UIColor {
         blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
         alpha: CGFloat(1.0)
     )
+}
+func gotToPage(_ className: AnyClass) {
+    for controller in navController.viewControllers {
+        if controller.isKind(of: className) {
+            navController.popToViewController(controller, animated: true)
+            break
+        }
+    }
 }

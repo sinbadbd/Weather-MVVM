@@ -10,7 +10,7 @@ import UIKit
 class MyButton: UIButton {
     
     // var buttonTitle:String!
-    convenience init(frame:CGRect = .zero, setTitle:String = "", bgColor:UIColor? = .init(), textColor:UIColor? = .init()) {
+    convenience init(frame:CGRect = .zero, setTitle:String = "button", bgColor:UIColor? = .init(), textColor:UIColor? = .init()) {
         self.init(frame : frame)
         if frame == .zero {
             self.translatesAutoresizingMaskIntoConstraints = false
