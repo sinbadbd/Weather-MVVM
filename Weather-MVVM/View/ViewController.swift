@@ -12,17 +12,14 @@ class ViewController: RootVC , AddWeatherDelegate{
     
 
     let tableView = UITableView()
-    
-//    private var weatherListViewModel = WeatherListViewModel()
-    let vc =  AddWeatherCityVC()
+        let vc =  AddWeatherCityVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
         vc.delegate = self
         setupWeatherUI()
-//        vc.dic?.name
-//        print( "data:\(vc.dic?.name ?? "")")
+
     }
     
     func addWeatherDidSave(vm: WeatherViewModel) {
@@ -90,7 +87,7 @@ class ViewController: RootVC , AddWeatherDelegate{
     }
     func updadeUI(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            print("==...==")
+          
         }
           
     }
