@@ -22,7 +22,7 @@ class ViewController: RootVC , AddWeatherDelegate{
         vc.delegate = self
         setupWeatherUI()
 //        vc.dic?.name
-        print( "data:\(vc.dic?.name ?? "")")
+//        print( "data:\(vc.dic?.name ?? "")")
     }
     
     func addWeatherDidSave(vm: WeatherViewModel) {
