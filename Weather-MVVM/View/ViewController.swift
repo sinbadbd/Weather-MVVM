@@ -88,6 +88,7 @@ class ViewController: RootVC {
     @objc func tapButton(sender:UIButton){
         if sender.tag == 1 {
             let vc = SettingsVC()
+            vc.delegate = self
              navController.pushViewController(vc, animated: true)
         }else if sender.tag == 2 {
             let vc = AddWeatherCityVC()
@@ -116,7 +117,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
 }
 
-extension ViewController: AddWeatherDelegate {
+extension ViewController: AddWeatherDelegate,SettingDelete {
+    func addSettingDelegate(vm: SettingsModel) {
+        print("setting delegate..")
+    }
+    
     func addWeatherDidSave(vm: WeatherViewModel) {
         print("Data:\(vm.main.temp)")
         self.weatherListModel.addWeatherViewModel(vm)
