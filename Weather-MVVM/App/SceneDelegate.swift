@@ -40,10 +40,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController  = navController
         window?.makeKeyAndVisible()
-        
+        setupDefaultSettings()
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
+    
+    private func setupDefaultSettings(){
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(Unit.celcius.rawValue, forKey: "unit")
+    }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

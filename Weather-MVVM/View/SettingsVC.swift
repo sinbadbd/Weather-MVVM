@@ -8,6 +8,8 @@
 import UIKit
 class SettingsVC: UIViewController {
 
+    private var settingsViewModel = SettingsModel()
+    
     let tableView = UITableView()
     
     
@@ -16,11 +18,12 @@ class SettingsVC: UIViewController {
         view.backgroundColor = hexToUIColor(hex: "#E6EEF4")
         
         setupVC()
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        let add = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItems = [add]
     }
     @objc func addTapped(){
-        
+//        dismiss(animated: true, completion: nil)
+        navController.popViewController(animated: true)
     }
 
 
@@ -35,7 +38,7 @@ class SettingsVC: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 50.0
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .clear
+//        tableView.backgroundColor = .clear
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(SettingsTableCell.self, forCellReuseIdentifier: "cell")
         tableView.position(top: view.safeAreaLayoutGuide.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor, insets: .init(top: 10, left: 20, bottom: 20, right: 20))
@@ -45,18 +48,37 @@ class SettingsVC: UIViewController {
  
 extension SettingsVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.settingsViewModel.units.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SettingsTableCell
        
-   
+        let settingsItem = self.settingsViewModel.units[indexPath.row]
+       cell.cityLbl?.text = settingsItem.displayName
+        
+        if  settingsItem == self.settingsViewModel.seletedUnit {
+            cell.accessoryType = .checkmark
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+            cell.backgroundColor  = hexToUIColor(hex:"#F7F5ED")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
+            cell.backgroundColor  = .none
+        }
     }
     
 }
