@@ -58,3 +58,7 @@ func gotToPage(_ className: AnyClass) {
         }
     }
 }
+
+func kelVinToCelsius(temp:Double) -> Double{
+    return temp-273.15
+}

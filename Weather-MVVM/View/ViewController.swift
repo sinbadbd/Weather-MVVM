@@ -7,24 +7,19 @@
 
 import UIKit
 
-class ViewController: RootVC , AddWeatherDelegate{
-
+class ViewController: RootVC {
     
-
-    let tableView = UITableView()
-        let vc =  AddWeatherCityVC()
+    
+    private var weatherListModel = WeatherListViewModel()
+    
+    
+    private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVC()
-        vc.delegate = self
         setupWeatherUI()
-
-    }
-    
-    func addWeatherDidSave(vm: WeatherViewModel) {
-        vc.delegate = self
-        print("test data")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,7 +30,6 @@ class ViewController: RootVC , AddWeatherDelegate{
     func setupVC(){
         removeScrollview()
         topViewHeight?.constant = navigationController!.navigationBar.frame.size.height
-//        navController.navigationBar.prefersLargeTitles = true
         resetBase()
         self.view.backgroundColor =  hexToUIColor(hex: "#E6EEF4")
     }
@@ -77,40 +71,41 @@ class ViewController: RootVC , AddWeatherDelegate{
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(WeatherListCell.self, forCellReuseIdentifier: "cell")
         tableView.position(top: topView.bottomAnchor, left: contentView.leadingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, insets: .init(top: 20, left: 20, bottom: 10, right: 20))
-   
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
         }
-//         tableView.size( height: 500)
         
         updadeUI()
     }
-    func updadeUI(){
+    
+   private func updadeUI(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-          
+            
         }
-          
     }
-
+    
     @objc func tapButton(sender:UIButton){
         if sender.tag == 1 {
-           print("hi")
+            print("hi")
         }else if sender.tag == 2 {
             let vc = AddWeatherCityVC()
-            present(vc, animated: true, completion: nil)
-//            navController.pushViewController(vc, animated: true)
+            vc.delegate = self
+            navController.pushViewController(vc, animated: true)
         }
-        
     }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.weatherListModel.numberOfRows(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! WeatherListCell
+       
+        let weatherVM = self.weatherListModel.modelAt(indexPath.row)
+        cell.configur(weatherVM)
         return cell
     }
     
@@ -120,10 +115,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
 }
 
-//extension ViewController: AddWeatherDelegate {
-//    func addWeatherDidSave(vm: WeatherViewModel) {
-//        let vc = AddWeatherCityVC()
-//        vc.delegate = self
-//        print("get data")
-//    }
-//}
+extension ViewController: AddWeatherDelegate {
+    func addWeatherDidSave(vm: WeatherViewModel) {
+        print("Data:\(vm.main.temp)")
+        self.weatherListModel.addWeatherViewModel(vm)
+        self.tableView.reloadData()
+    }
+}

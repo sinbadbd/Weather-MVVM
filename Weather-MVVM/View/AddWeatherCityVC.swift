@@ -21,22 +21,10 @@ class AddWeatherCityVC: RootVC {
     var dic : [WeatherViewModel] = []
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        //        setupVC()
-        
+        super.viewDidLoad()        
         setupWeatherUI()
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        self.title = "Add City" //stringFor(key: "play_shop")
-    //    }
-    
-    //    func setupVC(){
-    //       // topViewHeight?.constant = navigationController!.navigationBar.frame.size.height
-    //        resetBase()
-    //        self.view.backgroundColor =  hexToUIColor(hex: "#E6EEF4")
-    //    }
     
     func setupWeatherUI(){
         let topView  = UIView()
@@ -72,16 +60,10 @@ class AddWeatherCityVC: RootVC {
         
         let city = addCityInputTxF?.text  ?? ""
         
-        
-        
-        //        if city.count == 0 {
-        //            print("Write something")
-        //        }else{
         print("ok...")
         //
         let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=f279df88f01232850ddff621c125603d")!
         
-        // print("weatherURL:: \(weatherURL)")
         let weatherResource = Resource<WeatherViewModel>(url: weatherURL) { data in
             
             let weatherVM = try? JSONDecoder().decode(WeatherViewModel.self, from: data)
@@ -90,14 +72,18 @@ class AddWeatherCityVC: RootVC {
         }
         
         Webservice().load(resource: weatherResource) { [weak self] result in
-        
+            
+            print(result?.main)
+            
             if let weatherVM = result {
                 print(weatherVM.name)
                 print(weatherVM.main.temp)
                 print(weatherVM.main.temp_min)
+                
                 if let delegate = self?.delegate {
                     delegate.addWeatherDidSave(vm: weatherVM)
-                    print("delegate: \(String(describing: self?.delegate?.addWeatherDidSave(vm: weatherVM)))")
+                    //print("delegate: \(String(describing: self?.delegate?.addWeatherDidSave(vm: weatherVM)))")
+                    navController.popViewController(animated: true)
                     self?.dismiss(animated: true, completion: nil)
                 }else{
                     print("haha delegate not found")
@@ -120,13 +106,7 @@ extension AddWeatherCityVC: UITextFieldDelegate {
         if textField == addCityInputTxF{
             if textField.text == "" {
                 print("empt")
-                //                saveBtn?.isEnabled = false
             }
-            
         }
-        
     }
-    //    func textFieldDidEndEditing(_ textField: UITextField) {
-    //
-    //    }
 }
