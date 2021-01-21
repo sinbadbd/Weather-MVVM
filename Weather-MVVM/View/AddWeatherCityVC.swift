@@ -90,30 +90,20 @@ class AddWeatherCityVC: RootVC {
         }
         
         Webservice().load(resource: weatherResource) { [weak self] result in
-            
-            
+        
             if let weatherVM = result {
-                print(result?.main)
+                print(weatherVM.name)
+                print(weatherVM.main.temp)
+                print(weatherVM.main.temp_min)
                 if let delegate = self?.delegate {
                     delegate.addWeatherDidSave(vm: weatherVM)
+                    print("delegate: \(String(describing: self?.delegate?.addWeatherDidSave(vm: weatherVM)))")
+                    self?.dismiss(animated: true, completion: nil)
+                }else{
+                    print("haha delegate not found")
                     self?.dismiss(animated: true, completion: nil)
                 }
-                
             }
-
-//            if let weatherVM = result {
-//                print(weatherVM.name)
-//                print(weatherVM.main.temp)
-//                print(weatherVM.main.temp_min)
-//                if let delegate = self?.delegate {
-//                    delegate.addWeatherDidSave(vm: weatherVM)
-//                    print("delegate: \(String(describing: self?.delegate?.addWeatherDidSave(vm: weatherVM)))")
-//                    self?.dismiss(animated: true, completion: nil)
-//                }else{
-//                    print("haha delegate not found")
-//                    self?.dismiss(animated: true, completion: nil)
-//                }
-//            }
         }
     }
 }
