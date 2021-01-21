@@ -9,9 +9,7 @@ import UIKit
 
 class ViewController: RootVC {
     
-    
     private var weatherListModel = WeatherListViewModel()
-    
     
     private let tableView = UITableView()
     
@@ -69,6 +67,8 @@ class ViewController: RootVC {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 50.0
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(WeatherListCell.self, forCellReuseIdentifier: "cell")
         tableView.position(top: topView.bottomAnchor, left: contentView.leadingAnchor, bottom: contentView.bottomAnchor, right: contentView.trailingAnchor, insets: .init(top: 20, left: 20, bottom: 10, right: 20))
         
@@ -87,7 +87,8 @@ class ViewController: RootVC {
     
     @objc func tapButton(sender:UIButton){
         if sender.tag == 1 {
-            print("hi")
+            let vc = SettingsVC()
+             navController.pushViewController(vc, animated: true)
         }else if sender.tag == 2 {
             let vc = AddWeatherCityVC()
             vc.delegate = self
@@ -110,7 +111,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 70
     }
     
 }

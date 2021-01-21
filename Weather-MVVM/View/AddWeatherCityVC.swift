@@ -17,14 +17,15 @@ class AddWeatherCityVC: RootVC {
     var saveBtn: MyButton?
     
     var delegate: AddWeatherDelegate?
-    
-    var dic : [WeatherViewModel] = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()        
         setupWeatherUI()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.title = "Add City" //stringFor(key: "play_shop")
+    }
     
     func setupWeatherUI(){
         let topView  = UIView()
@@ -73,7 +74,6 @@ class AddWeatherCityVC: RootVC {
         
         Webservice().load(resource: weatherResource) { [weak self] result in
             
-            print(result?.main)
             
             if let weatherVM = result {
                 print(weatherVM.name)
@@ -82,9 +82,7 @@ class AddWeatherCityVC: RootVC {
                 
                 if let delegate = self?.delegate {
                     delegate.addWeatherDidSave(vm: weatherVM)
-                    //print("delegate: \(String(describing: self?.delegate?.addWeatherDidSave(vm: weatherVM)))")
                     navController.popViewController(animated: true)
-                    self?.dismiss(animated: true, completion: nil)
                 }else{
                     print("haha delegate not found")
                     self?.dismiss(animated: true, completion: nil)
