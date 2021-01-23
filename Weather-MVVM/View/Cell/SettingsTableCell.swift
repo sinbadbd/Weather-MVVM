@@ -33,15 +33,7 @@ class SettingsTableCell: UITableViewCell {
         mainContainer.addSubview(cityLbl!)
         cityLbl!.position(top: mainContainer.topAnchor, left: mainContainer.leadingAnchor, insets: .init(top: 10, left: 20, bottom: 10, right: 0))
         cityLbl?.size(width:120)
-        //        cityLbl.backgroundColor = .yellow
-        
-        
-//          degreeLbl = MyUILabel(frame: .zero, text: "12", textColor: buttonColor, fontSize: UIFont.systemFont(ofSize: 18), textAlign: .right)
-//        mainContainer.addSubview(degreeLbl!)
-//        degreeLbl?.position(top: mainContainer.topAnchor, right: mainContainer.trailingAnchor, insets: .init(top: 10, left: 0, bottom: 10, right: 20))
-//        degreeLbl?.size(width:120)
-        //        degreeLbl.backgroundColor = .yellow
-        
+
         
     }
     

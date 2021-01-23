@@ -120,6 +120,9 @@ extension WeatherListVC: UITableViewDataSource, UITableViewDelegate{
 extension WeatherListVC: AddWeatherDelegate,SettingDelete {
     func addSettingDelegate(vm: SettingsModel) {
         print("setting delegate..")
+        
+        self.weatherListModel.updateUnit(to: vm.seletedUnit)
+        self.tableView.reloadData()
     }
     
     func addWeatherDidSave(vm: WeatherViewModel) {

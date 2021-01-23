@@ -60,26 +60,21 @@ class AddWeatherCityVC: RootVC {
     @objc func tapButton(sender:MyButton){
         
         let city = addCityInputTxF?.text  ?? ""
-        
-        print("ok...")
         //
-        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=f279df88f01232850ddff621c125603d")!
+        guard let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=f279df88f01232850ddff621c125603d") else {
+            return
+        }
+        
         
         let weatherResource = Resource<WeatherViewModel>(url: weatherURL) { data in
             
             let weatherVM = try? JSONDecoder().decode(WeatherViewModel.self, from: data)
-            // print("vm:\(String(describing: weatherVM?.main))")
-            return weatherVM
+             return weatherVM
         }
         
         Webservice().load(resource: weatherResource) { [weak self] result in
             
-            
             if let weatherVM = result {
-                print(weatherVM.name)
-                print(weatherVM.main.temp)
-                print(weatherVM.main.temp_min)
-                
                 if let delegate = self?.delegate {
                     delegate.addWeatherDidSave(vm: weatherVM)
                     navController.popViewController(animated: true)
