@@ -24,7 +24,7 @@
 		1DE4C23925B8308500E0B07C /* MyUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C22E25B8308500E0B07C /* MyUITextField.swift */; };
 		1DE4C23A25B8308500E0B07C /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C22F25B8308500E0B07C /* MyButton.swift */; };
 		1DE4C23B25B8308500E0B07C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C23025B8308500E0B07C /* Utils.swift */; };
-		1DE4C23C25B8308500E0B07C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C23425B8308500E0B07C /* ViewController.swift */; };
+		1DE4C23C25B8308500E0B07C /* WeatherListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C23425B8308500E0B07C /* WeatherListVC.swift */; };
 		1DE4C23D25B8308500E0B07C /* AddWeatherCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C23525B8308500E0B07C /* AddWeatherCityVC.swift */; };
 		1DE4C24A25B83BFB00E0B07C /* WeatherListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE4C24925B83BFB00E0B07C /* WeatherListCell.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +49,7 @@
 		1DE4C22E25B8308500E0B07C /* MyUITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUITextField.swift; sourceTree = "<group>"; };
 		1DE4C22F25B8308500E0B07C /* MyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		1DE4C23025B8308500E0B07C /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		1DE4C23425B8308500E0B07C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1DE4C23425B8308500E0B07C /* WeatherListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherListVC.swift; sourceTree = "<group>"; };
 		1DE4C23525B8308500E0B07C /* AddWeatherCityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWeatherCityVC.swift; sourceTree = "<group>"; };
 		1DE4C24925B83BFB00E0B07C /* WeatherListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherListCell.swift; path = ../../../../WeatherListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				1DE4C24825B83BE600E0B07C /* Cell */,
-				1DE4C23425B8308500E0B07C /* ViewController.swift */,
+				1DE4C23425B8308500E0B07C /* WeatherListVC.swift */,
 				1DE4C23525B8308500E0B07C /* AddWeatherCityVC.swift */,
 				1D37878D25B86CD200F9DA64 /* SettingsVC.swift */,
 			);
@@ -244,7 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D37877C25B854B200F9DA64 /* WebService.swift in Sources */,
-				1DE4C23C25B8308500E0B07C /* ViewController.swift in Sources */,
+				1DE4C23C25B8308500E0B07C /* WeatherListVC.swift in Sources */,
 				1D3787A625B9CE9700F9DA64 /* SettingsModel.swift in Sources */,
 				1DE4C23925B8308500E0B07C /* MyUITextField.swift in Sources */,
 				1DE4C22625B8307600E0B07C /* AppDelegate.swift in Sources */,

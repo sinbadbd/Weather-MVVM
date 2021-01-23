@@ -28,8 +28,6 @@ class SettingsVC: UIViewController {
         navigationItem.rightBarButtonItems = [add]
     }
     @objc func addTapped(){
-        //        dismiss(animated: true, completion: nil)
-        
         if let delegate = self.delegate {
             delegate.addSettingDelegate(vm: self.settingsViewModel)
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: RootVC {
+class WeatherListVC: RootVC {
     
     private var weatherListModel = WeatherListViewModel()
     
@@ -98,7 +98,7 @@ class ViewController: RootVC {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate{
+extension WeatherListVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.weatherListModel.numberOfRows(section)
     }
@@ -117,7 +117,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
 }
 
-extension ViewController: AddWeatherDelegate,SettingDelete {
+extension WeatherListVC: AddWeatherDelegate,SettingDelete {
     func addSettingDelegate(vm: SettingsModel) {
         print("setting delegate..")
     }

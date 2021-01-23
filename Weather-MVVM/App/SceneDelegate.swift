@@ -9,7 +9,7 @@ import UIKit
 
 
 var navController: UINavigationController = {
-    let vc =  ViewController()
+    let vc =  WeatherListVC()
     let navigationController = UINavigationController.init(rootViewController: vc)
     navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
     navigationController.navigationBar.shadowImage = UIImage()
