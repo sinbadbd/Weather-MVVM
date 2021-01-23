@@ -47,7 +47,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func setupDefaultSettings(){
         let userDefaults = UserDefaults.standard
-        userDefaults.set(Unit.celcius.rawValue, forKey: "unit")
+        
+        if userDefaults.value(forKey: "unit") == nil {
+            userDefaults.set(Unit.celcius.rawValue, forKey: "unit")
+        }else {
+            
+        }
+        
+        
     }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

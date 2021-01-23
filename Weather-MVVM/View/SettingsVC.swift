@@ -68,13 +68,24 @@ extension SettingsVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.visibleCells.forEach { cell in
+            cell.accessoryType = .none
+        }
+        
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
             cell.backgroundColor  = hexToUIColor(hex:"#F7F5ED")
+            let unit = Unit.allCases[indexPath.row]
+            self.settingsViewModel.seletedUnit = unit
+            
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        
+        
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .none
             cell.backgroundColor  = .none
