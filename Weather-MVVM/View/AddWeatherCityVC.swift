@@ -14,6 +14,8 @@ protocol AddWeatherDelegate {
 class AddWeatherCityVC: RootVC {
     
     var addCityInputTxF: MyUITextField?
+    var userAddressInputTxF: MyUITextField?
+    var passwordInputTxF: MyUITextField?
     var saveBtn: MyButton?
     
     var delegate: AddWeatherDelegate?
